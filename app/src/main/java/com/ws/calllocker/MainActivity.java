@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Intent startServiceIntent = new Intent(getApplicationContext(), CallLockService.class);
         startService(startServiceIntent);
 
+        //Hellow WS
+
     }
 
     private void permissionCheck(){
