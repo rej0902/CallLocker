@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 //        for(String p : permission){
 //            if(!PermissionUtils.h)
 //        }
+        //추가
     }
 
 }
