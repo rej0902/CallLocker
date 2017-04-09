@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         String permission[] = new String[]{
           Manifest.permission.READ_PHONE_STATE};
         ArrayList<String> notGrantedPermission = new ArrayList<>();
-        for(String p : permission){
-            if(!PermissionUtils.h)
-        }
+//        for(String p : permission){
+//            if(!PermissionUtils.h)
+//        }
     }
 
 }
