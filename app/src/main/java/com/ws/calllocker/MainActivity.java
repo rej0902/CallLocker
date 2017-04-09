@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         startService(startServiceIntent);
 
         //Hellow WS
+        //write permission enabled?
+        
 
     }
 
