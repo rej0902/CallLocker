@@ -15,6 +15,7 @@ public class PhoneStateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, final Intent intent) {
         Log.e("asd", "onReceive");
+        //
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
         Log.e("asd", "state : " + state);
 
