@@ -18,10 +18,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".receiver.PhoneStateReceiver">
+        <receiver android:name=".receiver.OutGoingCallReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
-                <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
 
