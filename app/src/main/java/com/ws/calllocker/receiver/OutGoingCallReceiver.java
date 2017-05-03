@@ -17,22 +17,26 @@ public class OutGoingCallReceiver extends BroadcastReceiver {
     public void onReceive(Context context, final Intent intent) {
         Log.e("asd", "onReceive");
         // 발신잠금이 켜져있지 않으면 수행할 필요가 없다.
-        if(!CallLockCommon.isOutGoingLockActive(context)){
-            return ;
-        }
+//        if(!CallLockCommon.isOutGoingLockActive(context)){
+//            return ;
+//        }
 
         String command = intent.getAction();
 
         switch (command) {
             case Intent.ACTION_NEW_OUTGOING_CALL:
-
                 String outGoingNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-
+                Log.e("asd", "OutGoingCallReceiver  ACTION_NEW_OUTGOING_CALL  outGoingNumber : "+outGoingNumber);
                 // 만약 발신 정보를 가져오지 못했더라면 실행하지 않는다.
                 if (outGoingNumber == null || outGoingNumber.equals("")) {
                     break;
                 }
                 disConnectionCall();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 startCallLockService(context, outGoingNumber);
 
                 break;

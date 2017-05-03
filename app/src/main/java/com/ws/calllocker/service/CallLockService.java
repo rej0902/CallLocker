@@ -15,9 +15,9 @@ import com.ws.calllocker.receiver.OutGoingCallReceiver;
  */
 
 public class CallLockService extends Service {
-    OutGoingCallReceiver mCallStateRecevier;
-    WindowManager mWindowManager;
-    CallManager mCallManager;
+    private OutGoingCallReceiver mCallStateRecevier;
+    private WindowManager mWindowManager;
+    private CallManager mCallManager;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -46,7 +46,9 @@ public class CallLockService extends Service {
 
         switch (command){
             case CallLockCommon.CL_REJECT_CALL:
-
+                String getRejectedNumber = intent.getStringExtra(CallLockCommon.CL_REJECT_CALL_DATA);
+                // 잠금화면 보여주고, 잠금이 성공적이면 발신해야함.
+//                mCallManager.startCall(getRejectedNumber);
                 break;
 
         }

@@ -17,9 +17,10 @@ public class CallLockCommon {
     // Command Value
     public static final int CL_FAIL = -1;
     public static final int CL_REJECT_CALL = 1001;
+    public static final int CL_RECEIVED_CALL =1002;
 
-    public static final String CL_REJECT_CALL_DATA = "CallLockCommandData";
-
+    public static final String CL_REJECT_CALL_DATA = "CallLockRejectCallData";
+    public static final String CL_RECEIVED_CALL_DATA = "CallLockReceivedCallData";
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(CL_PREFERENCE_KEY, Activity.MODE_PRIVATE);
     }
