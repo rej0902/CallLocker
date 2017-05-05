@@ -1,35 +1,37 @@
 package com.ws.calllocker;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ws.calllocker.listener.PatternListener;
-import com.ws.calllocker.view.CustomPatternView;
+import com.ws.calllocker.service.CallLockService;
 
-public class MainActivity extends AppCompatActivity implements PatternListener {
-    private CustomPatternView mCustomPatternView;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mCustomPatternView = (CustomPatternView)findViewById(R.id.custom_pattern);
-        mCustomPatternView.setPatternListener(this);
+        Intent startServiceIntent = new Intent(getApplicationContext(), CallLockService.class);
+        startService(startServiceIntent);
+
+        //Hellow WS
+        //write  permission enabled?
+
 
     }
 
-    @Override
-    public void onAccept() {
-
+    private void permissionCheck(){
+        String permission[] = new String[]{
+          Manifest.permission.READ_PHONE_STATE};
+        ArrayList<String> notGrantedPermission = new ArrayList<>();
+//        for(String p : permission){
+//            if(!PermissionUtils.h)
+//        }
+        //추가
     }
 
-    @Override
-    public void onReject() {
-
-    }
-
-    @Override
-    public void onSavePattern() {
-        //패턴 저장했으니 종료한다.
-        finish();
-    }
 }
