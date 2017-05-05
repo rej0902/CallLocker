@@ -47,12 +47,12 @@ public class CallLockService extends Service {
 
         switch (command) {
             case CallLockCommon.CL_OUT_GOING_CALL_LOCK:
-                    String getOutgoingNumber = intent.getStringExtra(CallLockCommon.CL_OUT_GOING_CALL_DATA_KEY);
-                    if (getOutgoingNumber != null) {
-                        startBackgroundActivity();
-                        mIsStartCall = true;
-                        mStartCallNumber = getOutgoingNumber;
-                    }
+                String getOutgoingNumber = intent.getStringExtra(CallLockCommon.CL_OUT_GOING_CALL_DATA_KEY);
+                if (getOutgoingNumber != null) {
+                    startBackgroundActivity();
+                    mIsStartCall = true;
+                    mStartCallNumber = getOutgoingNumber;
+                }
                 break;
 
             case CallLockCommon.CL_IN_COMMING_CALL_LOCK:

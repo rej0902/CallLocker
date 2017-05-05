@@ -46,7 +46,7 @@ public class InComingCallReceiver extends BroadcastReceiver {
 
     private void startCallLockService(Context context, int command, String outGoingNumber) {
         Intent intent = new Intent(context, CallLockService.class);
-        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_IN_COMMING_CALL_LOCK);
+        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, command);
         intent.putExtra(CallLockCommon.CL_IN_COMING_CALL_DATA_KEY, outGoingNumber);
         context.startService(intent);
     }

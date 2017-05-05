@@ -29,7 +29,7 @@ public class CallLockCommon {
     public static final int CL_IN_COMMING_CALL_LOCK =2001;
     public static final int CL_OUT_GOING_CALL_LOCK = 2002;
 
-   // Close BroadCast
+    // Close BroadCast
     public static final String CL_IN_COMING_CALL_DATA_KEY = "CallLockIncomingCallData";
     public static final String CL_OUT_GOING_CALL_DATA_KEY = "CallLockOutgoingCallData";
 
