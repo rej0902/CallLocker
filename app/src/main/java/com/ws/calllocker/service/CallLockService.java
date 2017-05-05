@@ -4,10 +4,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.ws.calllocker.CallLockCommon;
 import com.ws.calllocker.CallManager;
 import com.ws.calllocker.EmptyBackgroundActivity;
+
+import static com.ws.calllocker.CallLockCommon.CL_CLOSE_KEY;
 
 /**
  * Created by ws on 2017-04-02.
@@ -49,14 +52,14 @@ public class CallLockService extends Service {
             case CallLockCommon.CL_OUT_GOING_CALL_LOCK:
                 String getOutgoingNumber = intent.getStringExtra(CallLockCommon.CL_OUT_GOING_CALL_DATA_KEY);
                 if (getOutgoingNumber != null) {
-                    startBackgroundActivity();
+                    startBackgroundActivity(false);
                     mIsStartCall = true;
                     mStartCallNumber = getOutgoingNumber;
                 }
                 break;
 
             case CallLockCommon.CL_IN_COMMING_CALL_LOCK:
-                startBackgroundActivity();
+                startBackgroundActivity(false);
                 mIsStartCall = false;
                 break;
 
@@ -68,11 +71,11 @@ public class CallLockService extends Service {
                 break;
 
             case CallLockCommon.CL_DISCONNECT_CALL:
+                startBackgroundActivity(true);
                 stopSelf();
                 break;
 
             case CallLockCommon.CL_CLOSE:
-                closeView();
                 break;
 
             default:
@@ -84,17 +87,14 @@ public class CallLockService extends Service {
     }
 
 
-    private void startBackgroundActivity() {
+    private void startBackgroundActivity(boolean isFinish) {
+        Log.e("asd","startBackgroundActivity");
         Intent backgroundIntent = new Intent(this, EmptyBackgroundActivity.class);
-        backgroundIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if(isFinish){
+            backgroundIntent.putExtra(CL_CLOSE_KEY,true);
+        }
+        backgroundIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
         startActivity(backgroundIntent);
     }
-
-    private void closeView() {
-        Intent intent = new Intent();
-        intent.setAction(CallLockCommon.CL_CLOSE_KEY);
-        sendBroadcast(intent);
-    }
-
 
 }

@@ -5,6 +5,7 @@ import android.graphics.PixelFormat;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.ws.calllocker.listener.CloseCallbackListener;
 import com.ws.calllocker.view.LockView;
 
 /**
@@ -15,11 +16,12 @@ public class CallLockWindowManager {
     private Context mContext = null;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
-
+    private CloseCallbackListener mCloseCallbackListener;
     private LockView mLockView;
 
-    public CallLockWindowManager(Context context) {
+    public CallLockWindowManager(Context context, CloseCallbackListener listener) {
         mContext = context;
+        mCloseCallbackListener = listener;
         initWindowManager();
     }
 
@@ -36,7 +38,7 @@ public class CallLockWindowManager {
     }
 
     public void startLockView() {
-        mLockView = new LockView(mContext);
+        mLockView = new LockView(mContext,mCloseCallbackListener);
         mWindowManager.addView(mLockView.getView(),mLayoutParams);
     }
 

@@ -61,6 +61,12 @@ public class CustomPatternView extends LinearLayout implements PatternView.OnPat
 
     }
 
+    public void setResultText(String text){
+        if(mResultTextView != null){
+            mResultTextView.setText(text);
+        }
+    }
+
 
     @Override
     public void onPatternDetected() {

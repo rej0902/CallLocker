@@ -36,7 +36,12 @@ public class InComingCallReceiver extends BroadcastReceiver {
                 startCallLockService(context,CallLockCommon.CL_IN_COMMING_CALL_LOCK,number);
                 break;
             case TelephonyManager.CALL_STATE_IDLE:
+                // 잠금을 못 풀었을 때, 전화가 끊기면 핀코드 창을 제거해준다.
+                if(!CallLockCommon.loadBooleanValue(context,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY)) {
+                    startCallLockService(context, CallLockCommon.CL_DISCONNECT_CALL, number);
+                }
                 CallLockCommon.setBooleanValue(context,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY,false);
+
                 break;
         }
 

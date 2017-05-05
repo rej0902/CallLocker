@@ -31,7 +31,8 @@
         <activity
             android:name=".EmptyBackgroundActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation"
             android:noHistory="true" />
 
         <receiver android:name=".receiver.OutGoingCallReceiver">
