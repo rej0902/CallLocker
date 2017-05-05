@@ -5,20 +5,20 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
-        android:text="사용하실 패턴을 입력하세요."
-        android:id="@+id/textView2" />
+        android:text="사용하실 패턴을 입력하세요." />
 
     <com.ws.calllocker.view.CustomPatternView
         android:id="@+id/custom_pattern"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentBottom="true" />
+        android:gravity="center" />
 
 </RelativeLayout>
