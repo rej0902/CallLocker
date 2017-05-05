@@ -25,6 +25,10 @@ public class OutGoingCallReceiver extends BroadcastReceiver {
 
         switch (command) {
             case Intent.ACTION_NEW_OUTGOING_CALL:
+                // 잠금을 풀었을 경우에는 보면안됨
+                if(CallLockCommon.loadBooleanValue(context,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY)){
+                    return;
+                }
                 String outGoingNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
                 Log.e("asd", "OutGoingCallReceiver  ACTION_NEW_OUTGOING_CALL  outGoingNumber : "+outGoingNumber);
                 // 만약 발신 정보를 가져오지 못했더라면 실행하지 않는다.
@@ -32,11 +36,6 @@ public class OutGoingCallReceiver extends BroadcastReceiver {
                     break;
                 }
                 disConnectionCall();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 startCallLockService(context, outGoingNumber);
 
                 break;
@@ -50,8 +49,8 @@ public class OutGoingCallReceiver extends BroadcastReceiver {
 
     private void startCallLockService(Context context, String outGoingNumber) {
         Intent intent = new Intent(context, CallLockService.class);
-        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_REJECT_CALL);
-        intent.putExtra(CallLockCommon.CL_REJECT_CALL_DATA, outGoingNumber);
+        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_OUT_GOING_CALL_LOCK);
+        intent.putExtra(CallLockCommon.CL_OUT_GOING_CALL_DATA_KEY, outGoingNumber);
         context.startService(intent);
     }
 

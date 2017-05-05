@@ -20,7 +20,8 @@ public class InComingCallReceiver extends BroadcastReceiver {
         String number = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
         int state = 0;
-        if(stateName != null) {
+
+        if (stateName != null) {
             if (stateName.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
                 state = TelephonyManager.CALL_STATE_IDLE;
             } else if (stateName.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
@@ -30,20 +31,23 @@ public class InComingCallReceiver extends BroadcastReceiver {
             }
         }
 
-        switch (state){
+        switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                startCallLockService(context,number);
+                startCallLockService(context,CallLockCommon.CL_IN_COMMING_CALL_LOCK,number);
+                break;
+            case TelephonyManager.CALL_STATE_IDLE:
+                CallLockCommon.setBooleanValue(context,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY,false);
                 break;
         }
 
-        Log.e("asd","InComingCallReceiver   state : "+state+"  number : "+number+ "  stateStr : " +stateName);
+        Log.e("asd", "InComingCallReceiver   state : " + state + "  number : " + number + "  stateStr : " + stateName);
 
     }
 
-    private void startCallLockService(Context context, String outGoingNumber) {
+    private void startCallLockService(Context context, int command, String outGoingNumber) {
         Intent intent = new Intent(context, CallLockService.class);
-        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_RECEIVED_CALL);
-        intent.putExtra(CallLockCommon.CL_RECEIVED_CALL_DATA, outGoingNumber);
+        intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_IN_COMMING_CALL_LOCK);
+        intent.putExtra(CallLockCommon.CL_IN_COMING_CALL_DATA_KEY, outGoingNumber);
         context.startService(intent);
     }
 

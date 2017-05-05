@@ -10,17 +10,29 @@ import android.content.SharedPreferences;
 
 public class CallLockCommon {
     private static final String CL_PREFERENCE_KEY = "CallLocker";
-    // Command Key
-    public static final String CL_COMMAND_OUTGOING_SETTING = "CallLockOutGoingSetting";
-    public static final String CL_COMMAND_KEY = "CallLockCommandKey";
 
+
+    //preference key
+    public static final String CL_PREF_PATTERN_KEY ="CallLockerPatternKey";
+    public static final String CL_PREF_UNLOCK_SEESION_KEY ="CallLockerSessionKey";
+    // Command Key
+    public static final String CL_COMMAND_OUTGOING_SETTING_KEY = "CallLockOutGoingSetting";
+    public static final String CL_COMMAND_KEY = "CallLockCommandKey";
+    public static final String CL_CLOSE_KEY ="CallLockClose";
     // Command Value
     public static final int CL_FAIL = -1;
+    public static final int CL_CLOSE = 1000;
     public static final int CL_REJECT_CALL = 1001;
-    public static final int CL_RECEIVED_CALL =1002;
+    public static final int CL_START_CALL =1002;
+    public static final int CL_DISCONNECT_CALL = 1004;
 
-    public static final String CL_REJECT_CALL_DATA = "CallLockRejectCallData";
-    public static final String CL_RECEIVED_CALL_DATA = "CallLockReceivedCallData";
+    public static final int CL_IN_COMMING_CALL_LOCK =2001;
+    public static final int CL_OUT_GOING_CALL_LOCK = 2002;
+
+   // Close BroadCast
+    public static final String CL_IN_COMING_CALL_DATA_KEY = "CallLockIncomingCallData";
+    public static final String CL_OUT_GOING_CALL_DATA_KEY = "CallLockOutgoingCallData";
+
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(CL_PREFERENCE_KEY, Activity.MODE_PRIVATE);
     }
@@ -31,15 +43,16 @@ public class CallLockCommon {
      *
      * @param context
      */
-    public static boolean isOutGoingLockActive(Context context) {
+    public static boolean loadBooleanValue(Context context, String key) {
         SharedPreferences sharedPreferences = getSharedPreferences(context);
-        return sharedPreferences.getBoolean(CallLockCommon.CL_COMMAND_OUTGOING_SETTING, false);
+        return sharedPreferences.getBoolean(key, false);
     }
 
-    public static void setOutGoingLockActive(Context context, boolean result) {
+    public static void setBooleanValue(Context context, String key, boolean result) {
         SharedPreferences sharedPreferences = getSharedPreferences(context);
-        sharedPreferences.edit().putBoolean(CallLockCommon.CL_COMMAND_OUTGOING_SETTING, result).apply();
+        sharedPreferences.edit().putBoolean(key, result).apply();
     }
+
 
 
     public static void saveValue(Context context, String key, String value) {

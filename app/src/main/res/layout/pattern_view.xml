@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="패턴을 입력하세요"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <com.eftimoff.patternview.PatternView xmlns:patternview="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/patternView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        patternview:circleColor="@android:color/darker_gray"
+        patternview:circleSize="100dp"
+        patternview:dotColor="@android:color/white"
+        patternview:gridColumns="3"
+        patternview:gridRows="3"
+        patternview:pathColor="@android:color/holo_red_light"
+        android:layout_below="@+id/resultTextView" />
+</RelativeLayout>

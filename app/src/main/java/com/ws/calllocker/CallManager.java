@@ -37,6 +37,7 @@ public class CallManager {
         }
     }
 
+
     private void initPhoneStateListener() {
         mTelephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
 //        mPhoneStateListener = new PhoneStateListener() {

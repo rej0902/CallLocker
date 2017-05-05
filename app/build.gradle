@@ -26,5 +26,19 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // fingerprint library Apach 2.0  Reprint
+    // url : https://github.com/ajalt/reprint
+    compile 'com.github.ajalt.reprint:core:3.1.0@aar' // required: supports marshmallow devices
+    compile 'com.github.ajalt.reprint:reprint_spass:3.1.0@aar' // optional: support for pre-marshmallow Samsung devices
+
+    //permission library Apach 2.0  TedPermission
+    // url : https://github.com/ParkSangGwon/TedPermission
+    compile 'gun0912.ted:tedpermission:1.0.2'
+
+    // pattern library Apach 2.0  android-patternview
+    // url : https://github.com/geftimov/android-patternview
+    compile 'com.eftimoff:android-patternview:1.0.6@aar'
+
     testCompile 'junit:junit:4.12'
 }
