@@ -31,18 +31,18 @@
         <activity
             android:name=".EmptyBackgroundActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
             android:configChanges="screenSize|orientation"
             android:noHistory="true" />
 
         <receiver android:name=".receiver.OutGoingCallReceiver">
-            <intent-filter>
+            <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
 
         <receiver android:name=".receiver.InComingCallReceiver">
-            <intent-filter>
+            <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>

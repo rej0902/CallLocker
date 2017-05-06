@@ -59,6 +59,8 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
     }
 
     private void sendStartCallCommand() {
+        // unlock session true
+        CallLockCommon.setBooleanValue(this, CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY, true);
         Intent intent = new Intent(this, CallLockService.class);
         intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_START_CALL);
         startService(intent);

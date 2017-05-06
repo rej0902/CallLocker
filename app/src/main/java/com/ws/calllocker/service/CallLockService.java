@@ -20,6 +20,7 @@ public class CallLockService extends Service {
     private CallManager mCallManager;
     private boolean mIsStartCall = false;
     private String mStartCallNumber = "";
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -39,7 +40,7 @@ public class CallLockService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent == null){
+        if (intent == null) {
             return START_STICKY;
         }
         int command = intent.getIntExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_FAIL);
@@ -64,8 +65,7 @@ public class CallLockService extends Service {
                 break;
 
             case CallLockCommon.CL_START_CALL:
-                if(mIsStartCall) {
-                    CallLockCommon.setBooleanValue(this,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY,true);
+                if (mIsStartCall) {
                     mCallManager.startCall(mStartCallNumber);
                 }
                 break;
@@ -88,12 +88,13 @@ public class CallLockService extends Service {
 
 
     private void startBackgroundActivity(boolean isFinish) {
-        Log.e("asd","startBackgroundActivity");
+        Log.e("asd", "startBackgroundActivity");
         Intent backgroundIntent = new Intent(this, EmptyBackgroundActivity.class);
-        if(isFinish){
-            backgroundIntent.putExtra(CL_CLOSE_KEY,true);
+        if (isFinish) {
+            backgroundIntent.putExtra(CL_CLOSE_KEY, true);
         }
-        backgroundIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+        backgroundIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        backgroundIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(backgroundIntent);
     }
 
