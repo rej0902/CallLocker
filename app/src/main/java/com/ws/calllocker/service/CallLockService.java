@@ -30,12 +30,14 @@ public class CallLockService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("asd","onCreate service");
         mCallManager = new CallManager(getApplicationContext());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.e("asd","onDestroy service");
     }
 
     @Override
@@ -64,10 +66,12 @@ public class CallLockService extends Service {
                 mIsStartCall = false;
                 break;
 
+            // outgoing 시 패턴을 풀고 call
             case CallLockCommon.CL_START_CALL:
                 if (mIsStartCall) {
                     mCallManager.startCall(mStartCallNumber);
                 }
+                stopSelf();
                 break;
 
             case CallLockCommon.CL_DISCONNECT_CALL:
