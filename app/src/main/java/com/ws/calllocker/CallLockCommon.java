@@ -13,20 +13,20 @@ public class CallLockCommon {
 
 
     //preference key
-    public static final String CL_PREF_PATTERN_KEY ="CallLockerPatternKey";
-    public static final String CL_PREF_UNLOCK_SEESION_KEY ="CallLockerSessionKey";
+    public static final String CL_PREF_PATTERN_KEY = "CallLockerPatternKey";
+    public static final String CL_PREF_UNLOCK_SEESION_KEY = "CallLockerSessionKey";
     // Command Key
     public static final String CL_COMMAND_OUTGOING_SETTING_KEY = "CallLockOutGoingSetting";
     public static final String CL_COMMAND_KEY = "CallLockCommandKey";
-    public static final String CL_CLOSE_KEY ="CallLockClose";
+    public static final String CL_CLOSE_KEY = "CallLockClose";
     // Command Value
     public static final int CL_FAIL = -1;
     public static final int CL_CLOSE = 1000;
     public static final int CL_REJECT_CALL = 1001;
-    public static final int CL_START_CALL =1002;
+    public static final int CL_START_CALL = 1002;
     public static final int CL_DISCONNECT_CALL = 1004;
 
-    public static final int CL_IN_COMMING_CALL_LOCK =2001;
+    public static final int CL_IN_COMMING_CALL_LOCK = 2001;
     public static final int CL_OUT_GOING_CALL_LOCK = 2002;
 
     // Close BroadCast
@@ -52,7 +52,6 @@ public class CallLockCommon {
         SharedPreferences sharedPreferences = getSharedPreferences(context);
         sharedPreferences.edit().putBoolean(key, result).apply();
     }
-
 
 
     public static void saveValue(Context context, String key, String value) {

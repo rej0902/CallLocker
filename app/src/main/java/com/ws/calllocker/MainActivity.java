@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity implements PatternListener {
 
     @Override
     public void onAccept() {
-
+        //... notting
     }
 
     @Override
     public void onReject() {
-
+        //... notting
     }
 
     @Override

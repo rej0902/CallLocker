@@ -30,14 +30,14 @@ public class CallLockService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e("asd","onCreate service");
+        Log.e("asd", "onCreate service");
         mCallManager = new CallManager(getApplicationContext());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("asd","onDestroy service");
+        Log.e("asd", "onDestroy service");
     }
 
     @Override
