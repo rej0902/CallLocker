@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.ws.calllocker.listener.CloseCallbackListener;
 import com.ws.calllocker.service.CallLockService;
@@ -22,6 +23,7 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
         Log.e("asd", "empty onCreate");
         super.onCreate(savedInstanceState);
         //remove animation
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         Log.e("asd", "있냐 : " + mCallLockWindowManager);
         overridePendingTransition(0, 0);
         initEmptyActivity();
@@ -58,7 +60,7 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
     @Override
     protected void onDestroy() {
         Log.e("asd", "empty onDestroy");
-        
+
         super.onDestroy();
     }
 

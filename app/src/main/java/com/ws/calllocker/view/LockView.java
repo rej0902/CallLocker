@@ -8,6 +8,8 @@ import android.view.View;
 import com.github.ajalt.reprint.core.AuthenticationFailureReason;
 import com.github.ajalt.reprint.core.AuthenticationListener;
 import com.github.ajalt.reprint.core.Reprint;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ws.calllocker.R;
 import com.ws.calllocker.listener.CloseCallbackListener;
 import com.ws.calllocker.listener.PatternListener;
@@ -28,7 +30,7 @@ public class LockView implements PatternListener, AuthenticationListener {
         mView = LayoutInflater.inflate(R.layout.view_lockscreen, null);
         mCustomPatternView = (CustomPatternView) mView.findViewById(R.id.custom_pattern);
         mCustomPatternView.setPatternListener(this);
-
+        initAdView();
         initFingerPrint();
     }
     private void initFingerPrint(){
@@ -37,6 +39,17 @@ public class LockView implements PatternListener, AuthenticationListener {
         if(Reprint.isHardwarePresent() && Reprint.hasFingerprintRegistered()){
             Reprint.authenticate(this);
         }
+    }
+
+    private void initAdView(){
+
+        AdView adView = (AdView)mView.findViewById(R.id.adView);
+        Log.e("asd","광고 : "+adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("355646072146773")
+                .build();
+        adView.loadAd(adRequest);
+
     }
 
     public View getView() {
