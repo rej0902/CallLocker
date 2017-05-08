@@ -1,26 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ff42959a">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:text="사용하실 패턴을 입력하세요." />
-
-    <com.ws.calllocker.view.CustomPatternView
-        android:id="@+id/custom_pattern"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textView2"
-        android:gravity="center" />
+        android:layout_height="50dp"
+        android:layout_above="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="24dp"
+        android:background="#80B3FF">
+
+        <TextView
+            android:id="@+id/recycler_item_tv"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/recycler_item_sb"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/recycler_item_sb"
+            android:layout_toStartOf="@+id/recycler_item_sb"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="전화 수신 잠금" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/recycler_item_sb"
+            style="@style/SwitchButtonStyle"
+            android:layout_width="34dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:checked="true"
+            android:gravity="center"
+            ads:kswBackMeasureRatio="2.5"
+            ads:kswThumbHeight="32dp"
+            ads:kswThumbWidth="32dp"
+            ads:kswTintColor="#0E5AA4" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_marginBottom="24dp"
+        android:layout_above="@+id/relativeLayout3"
+        android:layout_centerHorizontal="true"
+        android:background="#80B3FF">
+
+        <TextView
+            android:id="@+id/recycler_item_tv2"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/recycler_item_sb2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/recycler_item_sb2"
+            android:layout_toStartOf="@+id/recycler_item_sb2"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="전화 발신 잠금" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/recycler_item_sb2"
+            style="@style/SwitchButtonStyle"
+            android:layout_width="34dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:checked="true"
+            android:gravity="center"
+            ads:kswBackMeasureRatio="2.5"
+            ads:kswThumbHeight="32dp"
+            ads:kswThumbWidth="32dp"
+            ads:kswTintColor="#0E5AA4" />
+
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/relativeLayout3"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="24dp"
+        android:background="#80B3FF">
+
+        <TextView
+            android:id="@+id/recycler_item_tv3"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/recycler_item_sb3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/recycler_item_sb3"
+            android:layout_toStartOf="@+id/recycler_item_sb3"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="지문 인증" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/recycler_item_sb3"
+            style="@style/SwitchButtonStyle"
+            android:layout_width="34dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:checked="true"
+            android:gravity="center"
+            app:kswBackMeasureRatio="2.5"
+            app:kswThumbHeight="32dp"
+            app:kswThumbWidth="32dp"
+            app:kswTintColor="#0E5AA4" />
+
+    </RelativeLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -31,4 +136,12 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id">
     </com.google.android.gms.ads.AdView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="768px"
+        android:layout_height="768px"
+        ads:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

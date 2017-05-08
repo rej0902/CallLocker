@@ -35,6 +35,8 @@ dependencies {
     compile'com.android.support:appcompat-v7:25.3.1'
     compile'com.android.support.constraint:constraint-layout:1.0.2'
     compile'com.github.paolorotolo:appintro:4.1.0'
+    compile 'com.kyleduo.switchbutton:library:1.4.6'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 
     // fingerprint library Apach 2.0  Reprint
     // url : https://github.com/ajalt/reprint

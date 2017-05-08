@@ -1,9 +1,6 @@
 package com.ws.calllocker;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -19,9 +16,6 @@ public class MainActivity extends AppCompatActivity implements PatternListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initAdView();
-        mCustomPatternView = (CustomPatternView)findViewById(R.id.custom_pattern);
-        Log.e("asd","mCustomPatternView null : "+mCustomPatternView);
-        mCustomPatternView.setPatternListener(this);
     }
     private void initAdView(){
 
