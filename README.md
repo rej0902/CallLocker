@@ -18,6 +18,5 @@
        url : https://github.com/apl-devs/AppIntro
 
     5. Icon CC0 Public Domain typographyimages
-       url : https://goo.gl/wKKgVZ
-       
+       url : https://goo.gl/wKKgVZ
        
