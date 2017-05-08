@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.ws.calllocker.IntroFragmentPatternView">
+
+    <com.ws.calllocker.view.CustomPatternView
+        android:id="@+id/custom_pattern"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center" />
+
+</FrameLayout>
