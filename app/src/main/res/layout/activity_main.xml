@@ -21,24 +21,23 @@
             android:id="@+id/recycler_item_tv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/recycler_item_sb"
+            android:layout_alignBottom="@+id/toggle_incoming"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/recycler_item_sb"
-            android:layout_toStartOf="@+id/recycler_item_sb"
+            android:layout_toStartOf="@+id/toggle_incoming"
             android:textSize="30sp"
             android:gravity="center"
-            android:text="전화 수신 잠금" />
+            android:text="전화 수신 잠금"
+            android:layout_toLeftOf="@+id/toggle_incoming" />
 
         <com.kyleduo.switchbutton.SwitchButton
-            android:id="@+id/recycler_item_sb"
+            android:id="@+id/toggle_incoming"
             style="@style/SwitchButtonStyle"
             android:layout_width="34dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:checked="true"
             android:gravity="center"
             ads:kswBackMeasureRatio="2.5"
             ads:kswThumbHeight="32dp"
@@ -60,24 +59,23 @@
             android:id="@+id/recycler_item_tv2"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/recycler_item_sb2"
+            android:layout_alignBottom="@+id/toggle_outgoing"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/recycler_item_sb2"
-            android:layout_toStartOf="@+id/recycler_item_sb2"
+            android:layout_toStartOf="@+id/toggle_outgoing"
             android:textSize="30sp"
             android:gravity="center"
-            android:text="전화 발신 잠금" />
+            android:text="전화 발신 잠금"
+            android:layout_toLeftOf="@+id/toggle_outgoing" />
 
         <com.kyleduo.switchbutton.SwitchButton
-            android:id="@+id/recycler_item_sb2"
+            android:id="@+id/toggle_outgoing"
             style="@style/SwitchButtonStyle"
             android:layout_width="34dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:checked="true"
             android:gravity="center"
             ads:kswBackMeasureRatio="2.5"
             ads:kswThumbHeight="32dp"
@@ -101,24 +99,23 @@
             android:id="@+id/recycler_item_tv3"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/recycler_item_sb3"
+            android:layout_alignBottom="@+id/toggle_fingerprint"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/recycler_item_sb3"
-            android:layout_toStartOf="@+id/recycler_item_sb3"
+            android:layout_toStartOf="@+id/toggle_fingerprint"
             android:textSize="30sp"
             android:gravity="center"
-            android:text="지문 인증" />
+            android:text="지문 인증"
+            android:layout_toLeftOf="@+id/toggle_fingerprint" />
 
         <com.kyleduo.switchbutton.SwitchButton
-            android:id="@+id/recycler_item_sb3"
+            android:id="@+id/toggle_fingerprint"
             style="@style/SwitchButtonStyle"
             android:layout_width="34dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:checked="true"
             android:gravity="center"
             app:kswBackMeasureRatio="2.5"
             app:kswThumbHeight="32dp"
@@ -143,5 +140,6 @@
         android:layout_height="768px"
         ads:srcCompat="@mipmap/ic_launcher"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/relativeLayout" />
 </RelativeLayout>

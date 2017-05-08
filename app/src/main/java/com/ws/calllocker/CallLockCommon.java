@@ -16,6 +16,11 @@ public class CallLockCommon {
     public static final String CL_PREF_PATTERN_KEY = "CallLockerPatternKey";
     public static final String CL_PREF_UNLOCK_SEESION_KEY = "CallLockerSessionKey";
     public static final String CL_PREF_NOT_FIRST_START = "CallLockerFirstStart";
+
+    public static final String CL_PREF_TOGGLE_INCOMING_SETTING_VALUE = "CallLockerIncomingToggleSettingValue";
+    public static final String CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE = "CallLockerOutgoingToggleSettingValue";
+    public static final String CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE = "CallLockerFingerprintToggleSettingValue";
+
     // Command Key
     public static final String CL_COMMAND_OUTGOING_SETTING_KEY = "CallLockOutGoingSetting";
     public static final String CL_COMMAND_KEY = "CallLockCommandKey";

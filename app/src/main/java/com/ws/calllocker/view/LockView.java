@@ -10,9 +10,12 @@ import com.github.ajalt.reprint.core.AuthenticationListener;
 import com.github.ajalt.reprint.core.Reprint;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.ws.calllocker.CallLockCommon;
 import com.ws.calllocker.R;
 import com.ws.calllocker.listener.CloseCallbackListener;
 import com.ws.calllocker.listener.PatternListener;
+
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE;
 
 /**
  * Created by ws on 2017-05-04.
@@ -23,7 +26,8 @@ public class LockView implements PatternListener, AuthenticationListener {
     private Context mContext;
     private CustomPatternView mCustomPatternView;
     private CloseCallbackListener mCloseCallbackListener;
-    public LockView(Context context,CloseCallbackListener closeCallbackListener) {
+
+    public LockView(Context context, CloseCallbackListener closeCallbackListener) {
         mContext = context;
         mCloseCallbackListener = closeCallbackListener;
         LayoutInflater LayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -33,18 +37,22 @@ public class LockView implements PatternListener, AuthenticationListener {
         initAdView();
         initFingerPrint();
     }
-    private void initFingerPrint(){
+
+    private void initFingerPrint() {
+        if (!CallLockCommon.loadBooleanValue(mContext, CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE)) {
+            return;
+        }
         Reprint.initialize(mContext);
-        Log.e("asd","initFingerPrint  Reprint.isHardwarePresent() : "+Reprint.isHardwarePresent()+"  Reprint.hasFingerprintRegistered() : "+Reprint.hasFingerprintRegistered());
-        if(Reprint.isHardwarePresent() && Reprint.hasFingerprintRegistered()){
+        Log.e("asd", "initFingerPrint  Reprint.isHardwarePresent() : " + Reprint.isHardwarePresent() + "  Reprint.hasFingerprintRegistered() : " + Reprint.hasFingerprintRegistered());
+        if (Reprint.isHardwarePresent() && Reprint.hasFingerprintRegistered()) {
             Reprint.authenticate(this);
         }
     }
 
-    private void initAdView(){
+    private void initAdView() {
 
-        AdView adView = (AdView)mView.findViewById(R.id.adView);
-        Log.e("asd","광고 : "+adView);
+        AdView adView = (AdView) mView.findViewById(R.id.adView);
+        Log.e("asd", "광고 : " + adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("355646072146773")
                 .build();
@@ -59,7 +67,7 @@ public class LockView implements PatternListener, AuthenticationListener {
 
     @Override
     public void onAccept() {
-        Log.e("asd","lock view : "+"onAccept");
+        Log.e("asd", "lock view : " + "onAccept");
         mCloseCallbackListener.onClose();
     }
 
@@ -73,7 +81,7 @@ public class LockView implements PatternListener, AuthenticationListener {
 
     }
 
-//  finger print
+    //  finger print
     @Override
     public void onSuccess(int moduleTag) {
         Reprint.cancelAuthentication();

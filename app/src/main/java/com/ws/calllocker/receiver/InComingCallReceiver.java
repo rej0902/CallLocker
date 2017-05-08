@@ -9,6 +9,8 @@ import android.util.Log;
 import com.ws.calllocker.CallLockCommon;
 import com.ws.calllocker.service.CallLockService;
 
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_INCOMING_SETTING_VALUE;
+
 /**
  * Created by ws on 2017-05-04.
  */
@@ -16,6 +18,9 @@ import com.ws.calllocker.service.CallLockService;
 public class InComingCallReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        if(!CallLockCommon.loadBooleanValue(context,CL_PREF_TOGGLE_INCOMING_SETTING_VALUE)){
+            return;
+        }
         String stateName = intent.getExtras().getString(TelephonyManager.EXTRA_STATE);
         String number = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
@@ -36,6 +41,9 @@ public class InComingCallReceiver extends BroadcastReceiver {
                 startCallLockService(context,CallLockCommon.CL_IN_COMMING_CALL_LOCK,number);
                 break;
             case TelephonyManager.CALL_STATE_IDLE:
+                if(number == null){
+                    return;
+                }
                 // 잠금을 못 풀었을 때, 전화가 끊기면 핀코드 창을 제거해준다.
                 if(!CallLockCommon.loadBooleanValue(context,CallLockCommon.CL_PREF_UNLOCK_SEESION_KEY)) {
                     startCallLockService(context, CallLockCommon.CL_DISCONNECT_CALL, number);

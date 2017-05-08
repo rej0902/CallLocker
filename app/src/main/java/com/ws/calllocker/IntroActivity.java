@@ -18,6 +18,9 @@ import com.ws.calllocker.listener.CloseCallbackListener;
 import java.util.ArrayList;
 
 import static com.ws.calllocker.CallLockCommon.CL_PREF_PATTERN_KEY;
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE;
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_INCOMING_SETTING_VALUE;
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE;
 
 public class IntroActivity extends AppIntro implements CloseCallbackListener, PermissionListener {
     public final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 1;
@@ -58,6 +61,10 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener, Pe
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
         CallLockCommon.setBooleanValue(getApplicationContext(), CallLockCommon.CL_PREF_NOT_FIRST_START, true);
+
+        CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_INCOMING_SETTING_VALUE,true);
+        CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE,true);
+        CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE,true);
         startMainActivity();
         // Do something when users tap on Done button.
     }

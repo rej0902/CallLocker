@@ -8,6 +8,8 @@ import android.util.Log;
 import com.ws.calllocker.CallLockCommon;
 import com.ws.calllocker.service.CallLockService;
 
+import static com.ws.calllocker.CallLockCommon.CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE;
+
 /**
  * Created by ws on 2017-04-02.
  */
@@ -17,9 +19,9 @@ public class OutGoingCallReceiver extends BroadcastReceiver {
     public void onReceive(Context context, final Intent intent) {
         Log.e("asd", "onReceive");
         // 발신잠금이 켜져있지 않으면 수행할 필요가 없다.
-//        if(!CallLockCommon.isOutGoingLockActive(context)){
-//            return ;
-//        }
+        if(!CallLockCommon.loadBooleanValue(context,CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE)){
+            return;
+        }
 
         String command = intent.getAction();
 
