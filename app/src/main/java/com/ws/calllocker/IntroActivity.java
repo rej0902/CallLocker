@@ -31,7 +31,7 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener, Pe
         }
         startActivity(new Intent(this, SplashActivity.class));
         addSlide(AppIntroFragment.newInstance("CallLocker!", "CallLocker는 여러분의 통화생활을 존중합니다.", R.drawable.ic_lock, Color.parseColor("#1976D2")));
-        addSlide(AppIntroFragment.newInstance("Permission Required", "CallLocker는 통화 상태(전화를 걸거나 받기)를 확인할 수 있는 권한이 요구됩니다.", R.drawable.ic_skip_white, Color.parseColor("#1976D2")));
+        addSlide(AppIntroFragment.newInstance("Permission Required", "CallLocker는 통화 상태(전화를 걸거나 받기)를 확인할 수 있는 권한 및 화면 오버레이 권한이 요구됩니다. 해당권한은 수신 및 발신 잠금에 필요한 필수 권한입니다.", R.drawable.ic_skip_white, Color.parseColor("#1976D2")));
         addSlide(AppIntroFragment.newInstance("Processing...", "권한을 요구하는 창이 열리면, 수락을 눌러주세요.", R.drawable.ic_skip_white, Color.parseColor("#1976D2")));
         addSlide(AppIntroFragment.newInstance("감사합니다.", "권한을 얻었습니다.", R.drawable.ic_skip_white, Color.parseColor("#1976D2")));
         IntroFragmentPatternView introFragmentPatternView = new IntroFragmentPatternView();
@@ -68,27 +68,6 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener, Pe
         finish();
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_READ_PHONE_STATE: {
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    //허가시
-//                    pager.setCurrentItem(3);
-//                } else {
-//                    //거부시
-//                    pager.setCurrentItem(1);
-//                }
-//                return;
-//            }
-//
-//            // other 'case' lines to check for other
-//            // permissions this app might request
-//        }
-//    }
-
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         int position = pager.getCurrentItem();
@@ -103,8 +82,6 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener, Pe
                             .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
                             .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.SYSTEM_ALERT_WINDOW)
                             .check();
-
-//                    requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.SYSTEM_ALERT_WINDOW}, MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
                 }else{
                     pager.setCurrentItem(4);
                 }
