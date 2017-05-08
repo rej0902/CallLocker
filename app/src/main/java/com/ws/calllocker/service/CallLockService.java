@@ -97,8 +97,8 @@ public class CallLockService extends Service {
         if (isFinish) {
             backgroundIntent.putExtra(CL_CLOSE_KEY, true);
         }
-        backgroundIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         backgroundIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        backgroundIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(backgroundIntent);
     }
 

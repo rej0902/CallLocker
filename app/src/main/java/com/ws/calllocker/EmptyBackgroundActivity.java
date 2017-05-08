@@ -15,12 +15,14 @@ import com.ws.calllocker.service.CallLockService;
  */
 
 public class EmptyBackgroundActivity extends Activity implements CloseCallbackListener {
-    CallLockWindowManager mCallLockWindowManager;
+    private CallLockWindowManager mCallLockWindowManager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.e("asd","empty onCreate");
+        Log.e("asd", "empty onCreate");
         super.onCreate(savedInstanceState);
         //remove animation
+        Log.e("asd", "있냐 : " + mCallLockWindowManager);
         overridePendingTransition(0, 0);
         initEmptyActivity();
 
@@ -33,9 +35,9 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
 
     @Override
     protected void onNewIntent(Intent intent) {
-        Log.e("asd","empty onNewIntent");
-        boolean isFinish = intent.getBooleanExtra(CallLockCommon.CL_CLOSE_KEY,false);
-        if(isFinish){
+        Log.e("asd", "empty onNewIntent");
+        boolean isFinish = intent.getBooleanExtra(CallLockCommon.CL_CLOSE_KEY, false);
+        if (isFinish) {
             finish();
         }
 
@@ -43,19 +45,28 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
 
     @Override
     protected void onPause() {
-        Log.e("asd","empty onPause");
+        Log.e("asd", "empty onPause");
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        Log.e("asd","empty onResume");
+        Log.e("asd", "empty onResume");
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.e("asd", "empty onDestroy");
+        
+        super.onDestroy();
+    }
+
     private void initEmptyActivity() {
-        mCallLockWindowManager = new CallLockWindowManager(this,this);
-        mCallLockWindowManager.startLockView();
+        if (mCallLockWindowManager == null) {
+            mCallLockWindowManager = new CallLockWindowManager(this, this);
+            mCallLockWindowManager.startLockView();
+        }
     }
 
     private void sendStartCallCommand() {
@@ -64,6 +75,12 @@ public class EmptyBackgroundActivity extends Activity implements CloseCallbackLi
         Intent intent = new Intent(this, CallLockService.class);
         intent.putExtra(CallLockCommon.CL_COMMAND_KEY, CallLockCommon.CL_START_CALL);
         startService(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.e("asd", "onBackPressed");
     }
 
     @Override

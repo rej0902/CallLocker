@@ -33,21 +33,19 @@ public class CallLockWindowManager {
                 WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSPARENT);
-
-
     }
 
     public void startLockView() {
-        mLockView = new LockView(mContext,mCloseCallbackListener);
-        mWindowManager.addView(mLockView.getView(),mLayoutParams);
+        mLockView = new LockView(mContext, mCloseCallbackListener);
+        mWindowManager.addView(mLockView.getView(), mLayoutParams);
     }
 
-    public void finish(){
-        Log.e("asd","windowManager finish");
-        try{
+    public void finish() {
+        Log.e("asd", "windowManager finish");
+        try {
             mWindowManager.removeView(mLockView.getView());
             mLockView = null;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
