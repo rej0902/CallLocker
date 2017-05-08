@@ -2,24 +2,25 @@ package com.ws.calllocker;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.ws.calllocker.listener.CloseCallbackListener;
+
+import java.util.ArrayList;
 
 import static com.ws.calllocker.CallLockCommon.CL_PREF_PATTERN_KEY;
 
-public class IntroActivity extends AppIntro implements CloseCallbackListener {
+public class IntroActivity extends AppIntro implements CloseCallbackListener, PermissionListener {
     public final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,26 +68,26 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener {
         finish();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_PHONE_STATE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //허가시
-                    pager.setCurrentItem(3);
-                } else {
-                    //거부시
-                    pager.setCurrentItem(1);
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_READ_PHONE_STATE: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    //허가시
+//                    pager.setCurrentItem(3);
+//                } else {
+//                    //거부시
+//                    pager.setCurrentItem(1);
+//                }
+//                return;
+//            }
+//
+//            // other 'case' lines to check for other
+//            // permissions this app might request
+//        }
+//    }
 
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
@@ -97,7 +98,13 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener {
                 break;
             case 2:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                    new TedPermission(this)
+                            .setPermissionListener(this)
+                            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                            .setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.SYSTEM_ALERT_WINDOW)
+                            .check();
+
+//                    requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.SYSTEM_ALERT_WINDOW}, MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
                 }else{
                     pager.setCurrentItem(4);
                 }
@@ -125,5 +132,16 @@ public class IntroActivity extends AppIntro implements CloseCallbackListener {
     @Override
     public void onClose() {
         pager.setCurrentItem(5);
+    }
+
+
+    @Override
+    public void onPermissionGranted() {
+        pager.setCurrentItem(3);
+    }
+
+    @Override
+    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+        pager.setCurrentItem(1);
     }
 }
