@@ -25,8 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".IntroActivity">
-
+        <activity
+            android:name=".IntroActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
@@ -37,14 +38,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".EmptyBackgroundActivity"
             android:configChanges="screenSize|orientation"
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <activity android:name="com.ws.calllocker.MainActivity"
+        <activity
+            android:name="com.ws.calllocker.MainActivity"
             android:label="@string/app_name" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

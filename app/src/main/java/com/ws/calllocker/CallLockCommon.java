@@ -15,6 +15,7 @@ public class CallLockCommon {
     //preference key
     public static final String CL_PREF_PATTERN_KEY = "CallLockerPatternKey";
     public static final String CL_PREF_UNLOCK_SEESION_KEY = "CallLockerSessionKey";
+    public static final String CL_PREF_NOT_FIRST_START = "CallLockerFirstStart";
     // Command Key
     public static final String CL_COMMAND_OUTGOING_SETTING_KEY = "CallLockOutGoingSetting";
     public static final String CL_COMMAND_KEY = "CallLockCommandKey";

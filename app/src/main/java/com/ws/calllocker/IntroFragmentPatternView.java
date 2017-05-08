@@ -1,22 +1,16 @@
 package com.ws.calllocker;
 
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.eftimoff.patternview.PatternView;
+import com.ws.calllocker.listener.CloseCallbackListener;
 import com.ws.calllocker.listener.PatternListener;
 import com.ws.calllocker.view.CustomPatternView;
-
-import static com.ws.calllocker.CallLockCommon.CL_PREF_PATTERN_KEY;
 
 
 /**
@@ -25,8 +19,15 @@ import static com.ws.calllocker.CallLockCommon.CL_PREF_PATTERN_KEY;
 public class IntroFragmentPatternView extends Fragment implements PatternListener {
     private CustomPatternView mPatternView;
     private View mView;
+    private CloseCallbackListener mListener;
+
     public IntroFragmentPatternView() {
         // Required empty public constructor
+
+    }
+
+    public void setCloseListener(CloseCallbackListener listener) {
+        mListener = listener;
     }
 
 
@@ -57,7 +58,7 @@ public class IntroFragmentPatternView extends Fragment implements PatternListene
     @Override
     public void onSavePattern() {
         //...패턴 저장했을 때,
-        Log.e("asd","onSavePattern");
-        // 여기서 넘기는 부분으로
+        Log.e("asd", "onSavePattern");
+        mListener.onClose();
     }
 }
