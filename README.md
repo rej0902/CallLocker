@@ -20,3 +20,5 @@
     5. Icon CC0 Public Domain typographyimages
        url : https://goo.gl/wKKgVZ
        
+    6. SwitchButton Apach 2.0  kyleduo/SwitchButton
+       url : https://github.com/kyleduo/SwitchButton
