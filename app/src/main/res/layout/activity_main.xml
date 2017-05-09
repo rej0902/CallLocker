@@ -11,11 +11,10 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/relativeLayout2"
+        android:background="#80B3FF"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="24dp"
-        android:background="#80B3FF">
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/recycler_item_tv"
@@ -50,10 +49,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/relativeLayout2"
-        android:layout_marginBottom="24dp"
-        android:layout_above="@+id/relativeLayout3"
-        android:layout_centerHorizontal="true"
-        android:background="#80B3FF">
+        android:background="#80B3FF"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:id="@+id/recycler_item_tv2"
@@ -89,11 +89,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/relativeLayout3"
-        android:layout_above="@+id/adView"
+        android:background="#80B3FF"
+        android:layout_below="@+id/relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="24dp"
-        android:background="#80B3FF">
+        android:layout_marginTop="23dp">
 
         <TextView
             android:id="@+id/recycler_item_tv3"
@@ -128,18 +128,33 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id">
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
     </com.google.android.gms.ads.AdView>
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="768px"
-        android:layout_height="768px"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         ads:srcCompat="@mipmap/ic_launcher"
+        android:layout_marginTop="82dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/relativeLayout" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/opensource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="using open source License"
+        android:gravity="center"
+        android:textColor="@color/ksw_md_solid_checked_disable"
+        android:layout_below="@+id/relativeLayout3"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

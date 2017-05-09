@@ -1,9 +1,12 @@
 package com.ws.calllocker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ajalt.reprint.core.Reprint;
@@ -30,47 +33,57 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         mOutgoingToggle = (SwitchButton) findViewById(R.id.toggle_outgoing);
         mFingerprintToggle = (SwitchButton) findViewById(R.id.toggle_fingerprint);
 
-        Log.e("asd","test : "+CallLockCommon.loadBooleanValue(this,CL_PREF_TOGGLE_INCOMING_SETTING_VALUE));
+        Log.e("asd", "test : " + CallLockCommon.loadBooleanValue(this, CL_PREF_TOGGLE_INCOMING_SETTING_VALUE));
 
-        mIncomingToggle.setChecked(CallLockCommon.loadBooleanValue(this,CL_PREF_TOGGLE_INCOMING_SETTING_VALUE));
-        mOutgoingToggle.setChecked(CallLockCommon.loadBooleanValue(this,CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE));
-        mFingerprintToggle.setChecked(CallLockCommon.loadBooleanValue(this,CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE));
+        mIncomingToggle.setChecked(CallLockCommon.loadBooleanValue(this, CL_PREF_TOGGLE_INCOMING_SETTING_VALUE));
+        mOutgoingToggle.setChecked(CallLockCommon.loadBooleanValue(this, CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE));
+        mFingerprintToggle.setChecked(CallLockCommon.loadBooleanValue(this, CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE));
 
         mIncomingToggle.setOnCheckedChangeListener(this);
         mOutgoingToggle.setOnCheckedChangeListener(this);
         mFingerprintToggle.setOnCheckedChangeListener(this);
-    }
-    private void initAdView(){
 
-        AdView adView = (AdView)findViewById(R.id.adView);
-        Log.e("asd","광고 : "+adView);
+        TextView openSource = (TextView) findViewById(R.id.opensource);
+        openSource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LicensesActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initAdView() {
+
+        AdView adView = (AdView) findViewById(R.id.adView);
+        Log.e("asd", "광고 : " + adView);
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("355646072146773").build();
-        Log.e("asd","adRequest : "+adRequest.getContentUrl());
+        Log.e("asd", "adRequest : " + adRequest.getContentUrl());
         adView.loadAd(adRequest);
 
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.e("asd","onCheckedChanged : "+isChecked);
+        Log.e("asd", "onCheckedChanged : " + isChecked);
         switch (buttonView.getId()) {
             case R.id.toggle_incoming:
-                Log.e("asd","toggle_incoming");
-                CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_INCOMING_SETTING_VALUE,isChecked);
+                Log.e("asd", "toggle_incoming");
+                CallLockCommon.setBooleanValue(this, CL_PREF_TOGGLE_INCOMING_SETTING_VALUE, isChecked);
                 break;
             case R.id.toggle_outgoing:
-                Log.e("asd","toggle_outgoing");
-                CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE,isChecked);
+                Log.e("asd", "toggle_outgoing");
+                CallLockCommon.setBooleanValue(this, CL_PREF_TOGGLE_OUTGOING_SETTING_VALUE, isChecked);
                 break;
             case R.id.toggle_fingerprint:
-                Log.e("asd","toggle_fingerprint");
+                Log.e("asd", "toggle_fingerprint");
                 Reprint.initialize(this);
                 Log.e("asd", "initFingerPrint  Reprint.isHardwarePresent() : " + Reprint.isHardwarePresent() + "  Reprint.hasFingerprintRegistered() : " + Reprint.hasFingerprintRegistered());
                 if (Reprint.isHardwarePresent() && Reprint.hasFingerprintRegistered()) {
-                    CallLockCommon.setBooleanValue(this,CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE,isChecked);
-                }else{
-                    Toast.makeText(this,"해당 단말은 지문 기능이 없는 단말입니다.",Toast.LENGTH_SHORT).show();
+                    CallLockCommon.setBooleanValue(this, CL_PREF_TOGGLE_FINGERPRINT_SETTING_VALUE, isChecked);
+                } else {
+                    Toast.makeText(this, "해당 단말은 지문 기능이 없는 단말입니다.", Toast.LENGTH_SHORT).show();
                     buttonView.setChecked(true);
                 }
                 break;
